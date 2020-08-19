@@ -66,9 +66,9 @@
     <script>
 
     var funcs = [
-      'what',
-      'is',
-      'fjskdl'
+      'hello [name] - echos "hello name"',
+      'help - displays a list of comamnds',
+      'whoami - displays information about well ... Reese',
     ]
     $('#terminal-box').terminal({
 
@@ -78,11 +78,11 @@
         },
 
         help: function(){
-          this.echo('\nHello there! Here are a list of all commands! \n\n> ' + funcs.join('\n> ') + '\n\n');
+          this.echo('\nHello there! Here are a list of all commands and descriptions! \n\n> ' + funcs.join('\n> ') + '\n\n');
         }
 
     }, {
-        greetings: "Type 'help' to see a whole list of commands",
+        greetings: "Type 'help' to see a whole list of commands and how to use them",
         prompt: '>>> '
     });
 
