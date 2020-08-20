@@ -7,8 +7,13 @@
 	</head>
   <body>
     <div id="main-area">
-      <div id="top-banner"> <a href="https://rgyllenhammer.github.io"> <img id="logo-img" src="./static/images/rg-red-2.png"/> </a> </div>
-      <div id="terminal-box">
+      <div id="top-banner"> 
+        <div id="img-header">
+          <a href="https://rgyllenhammer.github.io"> <img id="logo-img" src="./static/images/rg-red-2.png"/> </a> 
+        </div>
+      </div>
+        
+      <div id="terminal-box"> </div>
     </div>
     <script src="three.js"> </script>
     <script>
@@ -21,7 +26,8 @@
       document.body.appendChild( renderer.domElement );
 
       var geometry = new THREE.BoxGeometry(2, 2, 2);
-      var material = new THREE.MeshBasicMaterial( { color:  0xFF0000 /* 0xFF69B4 */, wireframe: true } );
+      var material = new THREE.MeshBasicMaterial( { color: 0xFF0000 /* 0xFF69B4 */, wireframe: true } );
+
       var cube = new THREE.Mesh( geometry, material );
       cube.set
       scene.add( cube );
@@ -114,14 +120,24 @@
 
     $('#terminal-box').terminal({
 
-        hello: function(what) {
-            this.echo('Hello, ' + what +
-                      '. Wellcome to this terminal.');
+        hello: function(name) {
+            this.echo('\nHello, ' + name + '. Wellcome to this terminal.');
         },
 
-        help: function(){
-          this.echo('\nHello there! Here are a list of all [[b;red;white]commands], [[bu;<COLOR>;<BACKGROUND>]options], and descriptions! \n\n> ' + funcs.join('\n> ') + '\n\n');
+        help: function() {
+          this.echo('\nHello there! Here are a list of all [[b;red;white]commands], [[bu;<COLOR>;<BACKGROUND>]options], and descriptions! \n\n> ' + funcs.join('\n> ') + '\n');
+        },
+
+        style: function(cubeColor) {
+          this.echo('Changing the cube color now ... ');
+        },
+
+        whoami: function() {
+          this.echo('Creating information about Reese ...');
+          this.echo('View information at: https://rgyllenhammer.github.io/reese.html');
+          this.echo();
         }
+
 
     }, {
         greetings: "Type [[b;red;<BACKGROUND>]help] to see a whole list of commands and how to use them",

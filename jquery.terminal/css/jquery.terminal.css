@@ -946,6 +946,7 @@ terminal .terminal-output > div {
   --color: blue;
   --background: white;
   --size: 1.3;
+  --special-color: red;
 }
 
 .prompt{
