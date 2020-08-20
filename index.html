@@ -9,12 +9,21 @@
     <div id="main-area">
       <div id="top-banner"> 
         <div id="img-header">
-          <a href="https://rgyllenhammer.github.io"> <img id="logo-img" src="./static/images/rg-red-2.png"/> </a> 
+          <a href="https://rgyllenhammer.github.io"> <img id="logo-img" src="./static/images/rg-blue-full.png" onmouseover="hover(this);" onmouseout="unhover(this)"> </div> </a> 
         </div>
       </div>
         
       <div id="terminal-box"> </div>
     </div>
+    <script>
+      function hover(element){
+        element.setAttribute('src', './static/images/rg-red-full.png');
+      }
+
+      function unhover(element){
+        element.setAttribute('src', './static/images/rg-blue-full.png');
+      }
+    </script>
     <script src="three.js"> </script>
     <script>
 
@@ -62,8 +71,6 @@
         cube.geometry.parameters.width += growth_speed;
         cube.geometry.parameters.height += growth_speed;
         cube.geometry.parameters.depth += growth_speed;
-
-        console.log(cube.geometry.parameters.width);
 
       	renderer.render( scene, camera );
       }
