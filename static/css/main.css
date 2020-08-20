@@ -48,3 +48,17 @@ body{
   overflow-y: auto;
   font-size: 20px;
 }
+
+#big-paragraph {
+  color: blue;
+  padding-top: 0px;
+  padding-left: 1%;
+  border-left:3px solid blue;
+  height:70%; font-size: 20px;
+  margin-left: 30%;overflow-y: auto;
+}
+
+#big-paragraph::selection {
+  color: white;
+  background-color: blue;
+}
