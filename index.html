@@ -21,7 +21,7 @@
       document.body.appendChild( renderer.domElement );
 
       var geometry = new THREE.BoxGeometry(2, 2, 2);
-      var material = new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe: true } );
+      var material = new THREE.MeshBasicMaterial( { color:  0xFF0000 /* 0xFF69B4 */, wireframe: true } );
       var cube = new THREE.Mesh( geometry, material );
       cube.set
       scene.add( cube );
@@ -62,14 +62,56 @@
       	renderer.render( scene, camera );
       }
       animate();
-    </script>
-    <script>
+  
+    var function_objects = [
+    {
+        'title':'help',
+        'options':[],
+        'description': 'displays list of all commands'
+      },
+      {
+        'title': 'hello',
+        'options': ['name'],
+        'description': 'echos "hello name"'
+      },
+      {
+        'title': 'style',
+        'options': ['bgcolor', 'fgcolor'],
+        'description': 'echos "hello name"'
+      },
+      {
+        'title':'whoami',
+        'options':[],
+        'description': 'displays information about well ... Reese'
+      }
+    ];
 
-    var funcs = [
-      'hello [name] - echos "hello name"',
-      'help - displays a list of comamnds',
-      'whoami - displays information about well ... Reese',
-    ]
+    function pretty_print(fobj) {
+      var return_string = '';
+
+      // // formattting just the name of the function
+      return_string += `[[b;red;<BACKGROUND>]${fobj.title}] `;
+
+      // formatting arguments
+      var option_string = '';
+      for (var i = 0; i < fobj.options.length; i++){
+        var op = fobj.options[i];
+        return_string += `[[bu;<COLOR>;<BACKGROUND>]${op}] `;
+      }
+
+      // formatting description
+      return_string += '- '
+      return_string += fobj.description;
+      
+      return return_string;
+    }
+
+    var funcs = [];
+
+    for (var i = 0; i < function_objects.length; i++){
+      funcs.push(pretty_print(function_objects[i]))
+    }
+
     $('#terminal-box').terminal({
 
         hello: function(what) {
@@ -78,7 +120,7 @@
         },
 
         help: function(){
-          this.echo('\nHello there! Here are a list of all commands and descriptions! \n\n> ' + funcs.join('\n> ') + '\n\n');
+          this.echo('\nHello there! Here are a list of all [[b;red;white]commands], [[bu;<COLOR>;<BACKGROUND>]options], and descriptions! \n\n> ' + funcs.join('\n> ') + '\n\n');
         }
 
     }, {
