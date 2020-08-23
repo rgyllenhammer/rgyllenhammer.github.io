@@ -62,3 +62,18 @@ body{
   color: white;
   background-color: blue;
 }
+#paragraph-header {
+  font-size: 25px;
+}
+
+#paragraph-content {
+  margin-bottom: 1%;
+}
+
+.blue{
+  color: blue;
+}
+
+.red {
+  color: red;
+}
