@@ -7,12 +7,12 @@
 	</head>
   <body>
     <div id="main-area">
-      <div id="top-banner"> 
+      <div id="top-banner">
         <div id="img-header">
-          <a href="https://rgyllenhammer.github.io"> <img id="logo-img" src="./static/images/rg-blue-full.png" onmouseover="hover(this);" onmouseout="unhover(this)"> </div> </a> 
+          <a href="https://rgyllenhammer.github.io"> <img id="logo-img" src="./static/images/rg-blue-full.png" onmouseover="hover(this);" onmouseout="unhover(this)"> </div> </a>
         </div>
       </div>
-        
+
       <div id="terminal-box"> </div>
     </div>
     <script>
@@ -75,28 +75,39 @@
       	renderer.render( scene, camera );
       }
       animate();
-  
+
     var function_objects = [
     {
         'title':'help',
         'options':[],
         'description': 'displays list of all commands'
       },
+			{
+				'title':'whoami',
+				'options':[],
+				'description': 'displays information about well ... Reese'
+			},
+			{
+				'title':'projects',
+				'options':[],
+				'description': 'displays a few projects I wish to highlight'
+			},
       {
         'title': 'hello',
         'options': ['name'],
         'description': 'echos "hello name"'
       },
-      {
-        'title': 'style',
-        'options': ['bgcolor', 'fgcolor'],
-        'description': 'echos "hello name"'
-      },
-      {
-        'title':'whoami',
-        'options':[],
-        'description': 'displays information about well ... Reese'
-      }
+			{
+				'title':'ninja (unfinished)',
+				'options':['name'],
+				'description': 'a text based game of a ninja who needs to avoid stars and collect gold',
+				'notes': 'USE CLEAR METHOD FOR TERMINAL',
+			},
+			{
+				'title':'snake (unfinished)',
+				'options':['scolor', 'acolor','bgcolor'],
+				'description': 'a classic game of snake with customizeable snake, apple, and background colors'
+			},
     ];
 
     function pretty_print(fobj) {
@@ -115,7 +126,7 @@
       // formatting description
       return_string += '- '
       return_string += fobj.description;
-      
+
       return return_string;
     }
 
@@ -143,12 +154,18 @@
           this.echo('Creating information about Reese ...');
           this.echo('View information at: https://rgyllenhammer.github.io/reese.html');
           this.echo();
-        }
+        },
+
+				projects: function() {
+					this.echo('Populating project information ...');
+					this.echo('View projects at: https://rgyllenhammer.github.io/projects.html');
+					this.echo();
+				}
 
 
     }, {
         greetings: "Type [[b;red;<BACKGROUND>]help] to see a whole list of commands and how to use them",
-        prompt: '>>> '
+        prompt: '>>> ',
     });
 
     </script>
