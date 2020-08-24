@@ -6,12 +6,16 @@
 		 <link rel="stylesheet" href="./jquery.terminal/css/jquery.terminal.css"/>
 	</head>
   <body>
-      <div id="testMain"> 
-        <div id="testHeader">
-            <div id="testPlaceholder"> RG </div>
-            <div id="testFiller"> <div id="testFillerInner"> TEST TEST TEST </div> </div>
-        </div>
-      </div>
+    <div id="framed-body">
+      <div id="test-title"></div>
+    </div>
+    <script>
+      var qstring = window.location.search;
+      var search_params = new URLSearchParams(qstring);
 
+      var title = search_params.get('title');
+      var titleHead = document.getElementById("test-title");
+      titleHead.innerHTML = title;
+    </script>
   </body>
   </html>
