@@ -6,12 +6,57 @@
 		 <link rel="stylesheet" href="./jquery.terminal/css/jquery.terminal.css"/>
 	</head>
   <body>
-    <div id="main-area">
-        <div id="top-banner">
-            <div id="img-header">
-              <a href="https://rgyllenhammer.github.io"> <img id="logo-img" src="./static/images/rg-blue-full.png" onmouseover="hover(this);" onmouseout="unhover(this)"> </div> </a>
-            </div>
-          </div>
+		<div id="main-area">
+      <div id="top-banner">
+        <div id="img-header">
+					<a href="https://rgyllenhammer.github.io"> <img id="logo-img" src="./static/images/rg-blue-full.png" onmouseover="hover(this);" onmouseout="unhover(this)"> </a>
+				</div>
+      </div>
+    </div>
+		<div id="projects-box"></div>
+		</div>
+		<script>
+
+			var projects = [
+				{
+					'title': 'Lorem ipsum',
+					'image_link': '',
+					'description': `dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultrices gravida dictum fusce ut. Aliquam ut porttitor leo a. Venenatis cras sed felis eget velit aliquet sagittis. Tempor commodo ullamcorper a lacus vestibulum sed arcu non odio. Eget est lorem ipsum dolor sit amet. Aliquam purus sit amet luctus. Eget aliquet nibh praesent tristique magna sit amet purus. Nibh tellus molestie nunc non blandit massa enim nec. Amet consectetur adipiscing elit duis tristique sollicitudin nibh sit. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus. Risus quis varius quam quisque id diam. Ultrices tincidunt arcu non sodales neque sodales ut etiam. Vestibulum mattis ullamcorper velit sed ullamcorper. Pharetra et ultrices neque ornare aenean euismod elementum nisi quis. Et pharetra pharetra massa massa ultricies mi quis hendrerit. Et sollicitudin ac orci phasellus egestas tellus rutrum. Ut eu sem integer vitae justo eget magna fermentum.`
+				},
+				{
+					'title': 'Lorem ipsum',
+					'image_link': '',
+					'description': `dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultrices gravida dictum fusce ut. Aliquam ut porttitor leo a. Venenatis cras sed felis eget velit aliquet sagittis. Tempor commodo ullamcorper a lacus vestibulum sed arcu non odio. Eget est lorem ipsum dolor sit amet. Aliquam purus sit amet luctus. Eget aliquet nibh praesent tristique magna sit amet purus. Nibh tellus molestie nunc non blandit massa enim nec. Amet consectetur adipiscing elit duis tristique sollicitudin nibh sit. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus. Risus quis varius quam quisque id diam. Ultrices tincidunt arcu non sodales neque sodales ut etiam. Vestibulum mattis ullamcorper velit sed ullamcorper. Pharetra et ultrices neque ornare aenean euismod elementum nisi quis. Et pharetra pharetra massa massa ultricies mi quis hendrerit. Et sollicitudin ac orci phasellus egestas tellus rutrum. Ut eu sem integer vitae justo eget magna fermentum.`
+				},
+				{
+					'title': 'Lorem ipsum',
+					'image_link': '',
+					'description': `dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultrices gravida dictum fusce ut. Aliquam ut porttitor leo a. Venenatis cras sed felis eget velit aliquet sagittis. Tempor commodo ullamcorper a lacus vestibulum sed arcu non odio. Eget est lorem ipsum dolor sit amet. Aliquam purus sit amet luctus. Eget aliquet nibh praesent tristique magna sit amet purus. Nibh tellus molestie nunc non blandit massa enim nec. Amet consectetur adipiscing elit duis tristique sollicitudin nibh sit. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus. Risus quis varius quam quisque id diam. Ultrices tincidunt arcu non sodales neque sodales ut etiam. Vestibulum mattis ullamcorper velit sed ullamcorper. Pharetra et ultrices neque ornare aenean euismod elementum nisi quis. Et pharetra pharetra massa massa ultricies mi quis hendrerit. Et sollicitudin ac orci phasellus egestas tellus rutrum. Ut eu sem integer vitae justo eget magna fermentum.`
+				},
+				{
+					'title': 'Lorem ipsum',
+					'image_link': '',
+					'description': `dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultrices gravida dictum fusce ut. Aliquam ut porttitor leo a. Venenatis cras sed felis eget velit aliquet sagittis. Tempor commodo ullamcorper a lacus vestibulum sed arcu non odio. Eget est lorem ipsum dolor sit amet. Aliquam purus sit amet luctus. Eget aliquet nibh praesent tristique magna sit amet purus. Nibh tellus molestie nunc non blandit massa enim nec. Amet consectetur adipiscing elit duis tristique sollicitudin nibh sit. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus. Risus quis varius quam quisque id diam. Ultrices tincidunt arcu non sodales neque sodales ut etiam. Vestibulum mattis ullamcorper velit sed ullamcorper. Pharetra et ultrices neque ornare aenean euismod elementum nisi quis. Et pharetra pharetra massa massa ultricies mi quis hendrerit. Et sollicitudin ac orci phasellus egestas tellus rutrum. Ut eu sem integer vitae justo eget magna fermentum.`
+				},
+			];
+
+
+			var proj_box = document.getElementById("projects-box");
+
+			for (var i = 0; i < projects.length; i++){
+				var proj = projects[i];
+				var str_to_add = `<div class="project-row">
+					<div class="image-placeholder"></div>
+					<div class="project-text red">
+						<span class="blue"> ${proj.title}: </span>${proj.description}
+					</div>
+				</div>`;
+				proj_box.innerHTML += str_to_add;
+			}
+
+
+
+		</script>
     <script>
         function hover(element){
           element.setAttribute('src', './static/images/rg-red-full.png');
@@ -68,8 +113,6 @@
         cube.geometry.parameters.width += growth_speed;
         cube.geometry.parameters.height += growth_speed;
         cube.geometry.parameters.depth += growth_speed;
-
-        console.log(cube.geometry.parameters.width);
 
       	renderer.render( scene, camera );
       }
