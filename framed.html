@@ -8,14 +8,25 @@
   <body>
     <div id="framed-body">
       <div id="test-title"></div>
+      <div id="project-container">
+        <div id="project-card-placeholder"></div>
+        <div id="project-text"></div>
+      </div>
+
     </div>
     <script>
       var qstring = window.location.search;
       var search_params = new URLSearchParams(qstring);
 
       var title = search_params.get('title');
+      var description_text = search_params.get('description');
+
       var titleHead = document.getElementById("test-title");
+      var description = document.getElementById("project-text");
+
       titleHead.innerHTML += title;
+      description.innerHTML += description_text;
+
 
 
     </script>

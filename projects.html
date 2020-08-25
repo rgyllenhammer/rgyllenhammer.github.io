@@ -21,34 +21,37 @@
 				{
 					'title': 'Terminal based start page',
 					'image_link': '',
-					'description': ``
+					'description': `The basis of this project is very similar to the basis of this website! In fact, it is exaclty prompted me to make this website.
+					I really like the look and feel of a vintage terminal, and since this is what I mainly use to interact with my computer
+					I figured this should be the way I interact with the internet as well!`,
+					'links': ['https://github.com/rgyllenhammer/terminal_website']
 				},
 				{
 					'title': 'CSS Ruler Chrome Extension',
 					'image_link': '',
-					'description': ``
+					'description': `I made this as a side project of my time at Etsy. I had a hard time telling if things were actually aligned due to the fact that the CSS is so
+					abstracted away, so I made a customizeable ruler in the form of a chrome extension, so I could measure pixel differences if I needed to. It has been passed around
+					the internals of Etsy, and I believe people are still using it, even though I have left!`,
+					'links': ['https://github.com/rgyllenhammer/css-ruler-extension']
 				},
 				{
-					'title': 'Anissa',
+					'title': 'Instagram unfollower bot',
 					'image_link': '',
-					'description': ``
+					'description': `This project I wanted to do not only to highlight my skill of webscraping using Python and Selenium / Beautiful Soup, but it was also
+					my introduction to Twitch streaming! I livestreamed myself making this for about 15 people, which while a modest audience, felt great to me! I considered doing
+					more livestreams of me coding different things I want to make, but I lost time with school and such`,
+					'links': ['https://github.com/rgyllenhammer/instagramUnfollowerBot']
 				},
 			];
 
 
 			var proj_box = document.getElementById("projects-box");
-			// `<div class="project-row">
-			// 	<div class="image-placeholder"></div>
-			// 	<div class="project-text red">
-			// 		<span class="blue"> ${proj.title} </span>${proj.description}
-			// 	</div>
-			// </div>`;
 			for (var i = 0; i < projects.length; i++){
 				var proj = projects[i];
 				var str_to_add = `<div class="project-row">
-					<div class="image-placeholder"></div>
-					<a href="./framed.html?title=${proj.title}" target="project-frame">${proj.title}</a>
-				</div>`;
+					<a class="project-link" href="./framed.html?title=${proj.title}&description=${proj.description}" target="project-frame"><div class="image-placeholder"></div>
+					${proj.title}
+				</div></a>`;
 				proj_box.innerHTML += str_to_add;
 			}
 

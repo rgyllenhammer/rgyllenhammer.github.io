@@ -15,7 +15,7 @@
 
 iframe {
 	position: relative;
-	z-index: -10;
+	z-index: -2;
 }
 
 canvas {
@@ -114,14 +114,6 @@ body{
 	float: left;
 }
 
-.project-text {
-	height: 100%;
-	width: 60%;
-	margin-left: 2%;
-	float: left;
-	overflow-y: auto;
-}
-
 #project-frame {
 	margin-top: 2%;
 	margin-left: 5%;
@@ -138,8 +130,33 @@ body{
 }
 
 #test-title{
-	padding: 22% 0;
 	color: red;
-	font-size: 40px;
+	font-size: 30px;
 	text-align: center;
+}
+
+.project-link {
+	text-decoration: none;
+}
+
+.project-link:visited {
+	color: blue;
+}
+
+#project-container {
+	height: 100%;
+	width: 98%;
+	margin-left: 2%;
+	margin-top: 2%;
+}
+
+#project-card-placeholder {
+	width: 50%;
+	height: 50%;
+	background-color: blue;
+}
+
+#project-text {
+	margin-top: 2%;
+	color: red;
 }
