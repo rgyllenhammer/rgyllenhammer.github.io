@@ -109,8 +109,8 @@
         },
         {
           'title':'snake',
-          'options':['b_size'],
-          'description': 'a classic game of snake on a grid b_size x b_size'
+          'options':['b_width', 'b_height'],
+          'description': 'a classic game of snake on a grid b_width x b_height'
         },
       ];
 
@@ -147,19 +147,27 @@
 
     window.setInterval(main_loop, 100);
 
+    // pre defined constants
     let WITH_COLOR = true;
     let BOARD_BACKGROUND = '.';
     let SNAKE_BACKGROUND = 's';
     let APPLE_BACKGROUND = 'A';
-    let BOARD_SIZE = 15;
 
-    let y_vel = 0;
-    let x_vel = 1;
+    // user defined constants
+    let BOARD_WIDTH;
+    let BOARD_HEIGHT;
 
-    let apple_x = getRandomInt(5);
-    let apple_y = getRandomInt(5);
+    // instance variables
+    let y_vel;
+    let x_vel;
 
-    let initial_snake = [[5, 6], [5, 5], [5, 4]];
+    let apple_x;
+    let apple_y;
+
+    let snake;
+    let initial_snake;
+
+    // initial game state
     let game_running = false;
 
     document.addEventListener('keydown', function(event) {
@@ -192,28 +200,54 @@
     function main_loop(){
       if (game_running){
         test.clear();
-        test.echo('Click outside of terminal and use [[b;red;<BACKGROUND>]arrow keys] to move')
+        test.echo('Click outside of terminal and use [[b;red;<BACKGROUND>]arrow keys] to move');
         test.echo('Click inside of terminal and type [[b;red;<BACKGROUND>]stop] to stop game');
+        test.echo('[[b;blue;<BACKGROUND>]Length]: [[b;red;<BACKGROUND>]' + snake.length + ']');
         test.echo('')
         // main game action
-        var snake = move_snake(initial_snake, BOARD_SIZE);
-        test.echo(create_board(snake, BOARD_BACKGROUND, SNAKE_BACKGROUND, APPLE_BACKGROUND, BOARD_SIZE));
+        snake = move_snake(snake);
+        test.echo(create_board(snake));
         // main game action
         test.echo('')
       }
     }
 
-    function move_snake(snake, BOARD_SIZE){
-                
-        var snake_copy = [];
+    function deep_copy_snake(snake){
+      var snake_copy = [];
         for (var s = 0; s < snake.length; s++){
             snake_copy[s] = [... snake[s]];
         }
 
+        return snake_copy
+    }
+
+    // searches 2d array for 1d array element, all 1d elements have length 2
+    function search_2d_array(element, array){
+      var matches = false
+      for (var i = 0; i < array.length; i++){
+        var test_item = array[i];
+        if (element[0] == test_item[0] && element[1] == test_item[1]){
+          matches = true;
+          break;
+        }
+      }
+      return matches;
+    }
+
+    function move_snake(snake){
+                
+        var snake_copy = deep_copy_snake(snake);
+
         // head of the snake
         var head = snake[0];
-        head[0] = (head[0] + y_vel) >= 0 ? (head[0] + y_vel) % BOARD_SIZE : (head[0] + y_vel + BOARD_SIZE);
-        head[1] = (head[1] + x_vel) >= 0 ? (head[1] + x_vel) % BOARD_SIZE : (head[1] + x_vel + BOARD_SIZE);
+        head[0] = (head[0] + y_vel) >= 0 ? (head[0] + y_vel) % BOARD_HEIGHT : (head[0] + y_vel + BOARD_HEIGHT);
+        head[1] = (head[1] + x_vel) >= 0 ? (head[1] + x_vel) % BOARD_WIDTH : (head[1] + x_vel + BOARD_WIDTH);
+
+        // check if snake hits its own body
+        if (search_2d_array(head, snake_copy)){
+          game_running = false;
+          test.echo('You hit yourself! [[b;blue;<BACKGROUND>]YOU LOSE]');
+        }
 
         // rest of the snake
         for (var s_index = 1; s_index < snake.length; s_index++){
@@ -225,8 +259,8 @@
         }
 
         if (head[1] == apple_x && head[0] == apple_y){
-            apple_x = getRandomInt(BOARD_SIZE - 1);
-            apple_y = getRandomInt(BOARD_SIZE - 1);
+            apple_x = getRandomInt(BOARD_WIDTH - 1);
+            apple_y = getRandomInt(BOARD_HEIGHT - 1);
 
             var old_last_block = snake[snake.length - 1];
             var new_block = [];
@@ -252,13 +286,13 @@
         return return_string;
     }
 
-    function create_board(snake, BOARD_BACKGROUND, SNAKE_BACKGROUND, APPLE_BACKGROUND, BOARD_SIZE, game_div){
+    function create_board(snake){
 
         var board = []    
 
-        for (var i = 0; i < BOARD_SIZE; i++){
+        for (var i = 0; i < BOARD_HEIGHT; i++){
             var tmp_row = [];
-            for(var j = 0; j < BOARD_SIZE; j++){
+            for(var j = 0; j < BOARD_WIDTH; j++){
                 tmp_row[j] = BOARD_BACKGROUND;
             }
             board[i] = tmp_row;
@@ -306,18 +340,36 @@
 					this.echo();
 				},
 
-        snake: function(b_size) {
-          if (b_size > 5){
-            BOARD_SIZE = b_size;
+        snake: function(b_width, b_height) {
+          if (b_width > 5 && b_height > 5){
+            BOARD_WIDTH = b_width;
+            BOARD_HEIGHT = b_height;
+
+            y_vel = 0;
+            x_vel = 1;
+
+            apple_x = getRandomInt(5);
+            apple_y = getRandomInt(5);
+
+            snake = [[5, 6], [5, 5], [5, 4]];
+            initial_snake = deep_copy_snake(snake);
+
             game_running = true;
+
           } else {
-            this.echo('[[b;red;<BACKGROUND>]Error:] Board Size must be larger than 5')
+            this.echo('[[b;red;<BACKGROUND>]Error:] Board Width and Height must be larger than 5')
           }
           
         },
 
         stop: function(){
-          game_running = false;
+
+        y_vel = 0;
+        x_vel = 1;
+
+        snake = deep_copy_snake(initial_snake);
+      
+        game_running = false;
         }
 
     }, {
