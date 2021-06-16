@@ -93,6 +93,11 @@
           'description': 'displays list of all commands'
         },
         {
+          'title': 'hello',
+          'options': ['name'],
+          'description': 'echos "hello name"'
+        },
+        {
           'title':'whoami',
           'options':[],
           'description': 'displays information about my professional life'
@@ -101,11 +106,6 @@
           'title':'projects',
           'options':[],
           'description': 'displays a few projects I wish to highlight'
-        },
-        {
-          'title': 'hello',
-          'options': ['name'],
-          'description': 'echos "hello name"'
         },
         {
           'title':'snake',
@@ -316,7 +316,7 @@
     let test = $('#terminal-box').terminal({
 
         hello: function(name) {
-          this.echo('\n')
+          this.echo('')
           this.echo(`Hello, ${name}. Wellcome to this terminal.`);
         },
 
