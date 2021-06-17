@@ -42,8 +42,10 @@
 					more livestreams of me coding different things I want to make, but I lost time with school and such`,
 					'links': ['https://github.com/rgyllenhammer/instagramUnfollowerBot']
 				},
-			];
-
+      ];
+      
+      var iframe_ = document.getElementById("project-frame");
+      iframe_.src = `./framed.html?title=${projects[0].title}&description=${projects[0].description}`;
 
 			var proj_box = document.getElementById("projects-box");
 			for (var i = 0; i < projects.length; i++){
