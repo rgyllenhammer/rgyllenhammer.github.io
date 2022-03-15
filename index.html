@@ -7,16 +7,28 @@
 	</head>
   <body>
     <div id="main-area">
-      <div id="top-banner">
+      <!-- <div id="top-banner">
         <div id="img-header">
 					<a href="https://rgyllenhammer.github.io"> <img id="logo-img" src="./static/images/rg-blue-full.png" onmouseover="hover(this);" onmouseout="unhover(this)"> </a>
 				</div>
-      </div>
+      </div> -->
+    </div>
+
+    <div id="top-nav">
+      <a class="top-nav-link">resume</a>
+      <a class="top-nav-link">faq</a>
+      <a class="top-nav-link">projects</a>
+      <a class="top-nav-link">random</a>
+      <a class="top-nav-link">pants</a>
+    </div>
+
+    <div id="header-aye">
+      <h1>rgyllenhammer.com</h1>
     </div>
 
     <div id="terminal-box"> </div>
     </div>
-    <script>
+    <!-- <script>
       function hover(element){
         element.setAttribute('src', './static/images/rg-red-full.png');
       }
@@ -24,64 +36,8 @@
       function unhover(element){
         element.setAttribute('src', './static/images/rg-blue-full.png');
       }
-    </script>
-    <script src="three.js"> </script>
-    <!-- <script src = "ninja.js"></script> -->
+    </script> -->
     <script type="module">
-
-      // ------------ THREE.JS CODE -------------
-      var scene = new THREE.Scene();
-      var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-
-      var renderer = new THREE.WebGLRenderer({ alpha: true });
-      renderer.setSize( window.innerWidth, window.innerHeight );
-      document.body.appendChild( renderer.domElement );
-
-      var geometry = new THREE.BoxGeometry(2, 2, 2);
-      var material = new THREE.MeshBasicMaterial( { color: 0xFF0000 /* 0xFF69B4 */, wireframe: true } );
-
-      var cube = new THREE.Mesh( geometry, material );
-      cube.set
-      scene.add( cube );
-
-      camera.position.z = 5;
-
-      var x_speed = Math.floor(Math.random() * (5 - 2 + 1) + 2) / 100;
-      var y_speed = Math.floor(Math.random() * (5 - 2 + 1) + 2) / 100;
-      var growth_speed = Math.floor(Math.random() * (5 - 2 + 1) + 2) / 100;
-
-    
-
-      function animate() {
-      	requestAnimationFrame( animate );
-
-        cube.rotation.x += 0.01;
-        cube.rotation.y += 0.01;
-
-        if (cube.position.x >= 6.5 || cube.position.x <= -6.5){
-          x_speed = -x_speed;
-        }
-
-        if (cube.position.y >= 4 || cube.position.y <= -4) {
-          y_speed = -y_speed;
-        }
-
-        if (cube.geometry.parameters.width >= 4 || cube.geometry.parameters.width <= 0){
-          growth_speed = -growth_speed;
-        }
-
-        cube.position.x += x_speed;
-        cube.position.y += y_speed;
-
-        cube.geometry.parameters.width += growth_speed;
-        cube.geometry.parameters.height += growth_speed;
-        cube.geometry.parameters.depth += growth_speed;
-
-      	renderer.render( scene, camera );
-      }
-      animate();
-
-      // ------------ THREE.JS CODE -------------
 
      
       // ------------ TERMINAL FUNCTION SETUP -------------
@@ -200,9 +156,9 @@
     function main_loop(){
       if (game_running){
         test.clear();
-        test.echo('Click outside of terminal and use [[b;red;<BACKGROUND>]arrow keys] to move');
-        test.echo('Click inside of terminal and type [[b;red;<BACKGROUND>]stop] to stop game');
-        test.echo('[[b;blue;<BACKGROUND>]Length]: [[b;red;<BACKGROUND>]' + snake.length + ']');
+        test.echo('click outside of terminal and use [[b;red;<BACKGROUND>]arrow keys] to move');
+        test.echo('click inside of terminal and type [[b;red;<BACKGROUND>]stop] to stop game');
+        test.echo('[[b;<COLOR>;<BACKGROUND>]length]: [[b;red;<BACKGROUND>]' + snake.length + ']');
         test.echo('')
         // main game action
         snake = move_snake(snake);
@@ -246,7 +202,7 @@
         // check if snake hits its own body
         if (search_2d_array(head, snake_copy)){
           game_running = false;
-          test.echo('You hit yourself! [[b;blue;<BACKGROUND>]YOU LOSE]');
+          test.echo('You hit yourself! [[b;red;<BACKGROUND>]YOU LOSE]');
         }
 
         // rest of the snake
@@ -302,7 +258,7 @@
             var row_index = snake[s_index][0];
             var col_index = snake[s_index][1];
 
-            board[row_index][col_index] = '[[b;green;<BACKGROUND>]' + SNAKE_BACKGROUND + ']';                    
+            board[row_index][col_index] = '[[b;<COLOR>;<BACKGROUND>]' + SNAKE_BACKGROUND + ']';                    
         }
 
         board[apple_y][apple_x] = '[[b;red;<BACKGROUND>]' + APPLE_BACKGROUND + ']';
@@ -373,7 +329,7 @@
         }
 
     }, {
-        greetings: "Type [[b;red;<BACKGROUND>]help] to see a whole list of commands and how to use them",
+        greetings: "type [[b;red;<BACKGROUND>]help] to see a whole list of commands and how to use them",
         prompt: '>>> ',
     });
 
